@@ -9,7 +9,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Main {
+public class    Main {
     private static ArrayList<Point> points = new ArrayList<Point>();
     public static void createGUI() {
         final JFrame frame = new JFrame("Testframe");
@@ -50,7 +50,7 @@ public class Main {
 
 
         JButton button1 = new JButton("Добавить точку");
-        button1.setBounds(2,100,160,40);
+        button1.setBounds(2,100,160,30);
         butPanel.add(button1);
         button1.addActionListener(new ActionListener(){
             @Override
@@ -81,8 +81,8 @@ public class Main {
 
             }
         });
-        JButton button2 = new JButton("очистить");
-        button2.addActionListener(new ActionListener() {
+        JButton button3 = new JButton("очистить");
+        button3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 for (int i=0;i<points.size();i++){
@@ -96,15 +96,26 @@ public class Main {
                 }
             }
         });
-        button2.setBounds(2,150,160,40);
-        butPanel.add(button2);
+        button3.setBounds(2,200,160,30);
+        butPanel.add(button3);
         panel.add(pointpane,BorderLayout.CENTER);
         panel.add(butPanel,BorderLayout.EAST);
         frame.getContentPane().add(panel);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+
+        JButton button4 = new JButton("Добавить прямую");
+        button4.setBounds(2,150,160,30);
+        butPanel.add(button4);
+        button4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
     }
+
 
 
     public static void main(String[] args) {
