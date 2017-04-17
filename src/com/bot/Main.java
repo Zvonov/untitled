@@ -35,7 +35,7 @@ public class    Main {
         Y.setBounds(45,25,15,25);
         butPanel.add(Y);
         JLabel N = new JLabel("NUM:");
-        N.setBounds(2,70,30,25);
+        N.setBounds(2,75,30,25);
         butPanel.add(N);
         final JTextField x = new JTextField();
         x.setBounds(17,25, 25,25);
@@ -81,6 +81,72 @@ public class    Main {
 
             }
         });
+
+
+        JButton button4 = new JButton("Добавить прямую");
+        button4.setBounds(2,265,160,30);
+        butPanel.add(button4);
+        button4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        JLabel addLinewithCoords = new JLabel("Добавить по коэфициентам");
+        addLinewithCoords.setBounds(2,150,300,25);
+        butPanel.add(addLinewithCoords);
+        JLabel addRandomLine = new JLabel("Добавить рандомное количество прямых");
+        addRandomLine.setBounds(2,200,300,25);
+        butPanel.add(addRandomLine);
+        JLabel K = new JLabel("K:");
+        K.setBounds(2,175,25,25);
+        butPanel.add(K);
+        JLabel B = new JLabel("B:");
+        B.setBounds(45,175,25,25);
+        butPanel.add(B);
+        JLabel Num = new JLabel("NUM:");
+        Num.setBounds(2,225,30,25);
+        butPanel.add(Num);
+        final JTextField k = new JTextField();
+        k.setBounds(17,175, 25,25);
+        butPanel.add(k);
+        final JTextField b = new JTextField();
+        b.setBounds(60,175, 25,25);
+        butPanel.add(b);
+        final JTextField num = new JTextField();
+        num.setBounds(35,225,30,25);
+        butPanel.add(num);
+
+        JButton button5 = new JButton("Прочитаит файл");
+        button5.setBounds(2,300,160,30);
+        butPanel.add(button5);
+        button5.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+        JButton button6 = new JButton("Записать в файл");
+        button6.setBounds(2,335,160,30);
+        butPanel.add(button6);
+        button6.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+        JButton button7 = new JButton("Решить");
+        button7.setBounds(2,370,160,30);
+        butPanel.add(button7);
+        button7.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
         JButton button3 = new JButton("очистить");
         button3.addActionListener(new ActionListener() {
             @Override
@@ -96,7 +162,7 @@ public class    Main {
                 }
             }
         });
-        button3.setBounds(2,200,160,30);
+        button3.setBounds(2,420,160,30);
         butPanel.add(button3);
         panel.add(pointpane,BorderLayout.CENTER);
         panel.add(butPanel,BorderLayout.EAST);
@@ -105,16 +171,9 @@ public class    Main {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
-        JButton button4 = new JButton("Добавить прямую");
-        button4.setBounds(2,150,160,30);
-        butPanel.add(button4);
-        button4.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
 
-            }
-        });
     }
+
 
 
 
