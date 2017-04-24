@@ -26,13 +26,9 @@ public class Line extends JPanel {
         if(k != 0) {
             if (k > 0) {
                 g.drawLine(0, b, (int) ((700 - b) / k), 700);
-            } else {
-                if (700-b>b) {
-                    g.drawLine(0, 700-b, 700, b);
-                }
-                else{
-                    g.drawLine(0, b, (int) (-b/k), 700-b);
-                }
+            }
+            else{
+                g.drawLine(0,b,(int) ( -b/k),0);
             }
         }
         else
