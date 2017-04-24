@@ -132,7 +132,7 @@ public class    Main {
                 else {
                     if (N>0){
                         for (int i=0;i<N;i++){
-                            Line temp = new Line((Math.random()*20-10), (int)(Math.random()*frame.getHeight()/2));
+                            Line temp = new Line(Math.round((Math.random()*30-15)*10)/10, (int)(Math.random()*frame.getHeight()*1.5));
                             lines.add(temp);
                             pane.add(temp);
                             temp.setBounds(2,2,frame.getWidth(), frame.getHeight());
@@ -143,7 +143,6 @@ public class    Main {
                 }
             }
         });
-
         JButton button5 = new JButton("Прочитаит файл");
         button5.setBounds(2,300,160,30);
         butPanel.add(button5);
@@ -170,7 +169,33 @@ public class    Main {
         button7.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Point pointMax1 = null;
+                Point pointMax2 = null;
+                int max = 0;
 
+                for (Point point1 : points) {
+                    for (Point point2 : points) {
+                        if (point1 != point2) {
+                            double k = Math.round((double) (point1.y - point2.y) / (point1.x - point2.x) * 10) / 10;
+                            int curr = 0;
+                            for (Line line : lines) {
+                                if (k == line.getK()) curr++;
+                            }
+                            if (curr > max) {
+                                max = curr;
+                                pointMax1 = point1;
+                                pointMax2 = point2;
+                            }
+                        }
+                    }
+                }
+                try {
+                    System.out.println("(" + pointMax1.x + " ; " + pointMax1.y + ")");
+                    System.out.println("(" + pointMax2.x + " ; " + pointMax2.y + ")");
+
+                }catch(NullPointerException e1){
+                    System.out.print("No such points");
+                }
             }
         });
 
@@ -183,6 +208,15 @@ public class    Main {
                         int index = points.size() - 1;
                         Point point = points.remove(index);
                         pane.remove(point);
+                        pane.repaint();
+                        pane.revalidate();
+                    }
+                }
+                for (int i=0;i<lines.size();i++){
+                    while(lines.size() > 0) {
+                        int index = lines.size() - 1;
+                        Line line = lines.remove(index);
+                        pane.remove(line);
                         pane.repaint();
                         pane.revalidate();
                     }
