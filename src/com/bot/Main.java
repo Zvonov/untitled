@@ -11,15 +11,17 @@ import java.util.Scanner;
 
 public class    Main {
     private static ArrayList<Point> points = new ArrayList<Point>();
+    private static ArrayList<Line> lines;
     public static void createGUI() {
+        lines = new ArrayList<Line>();
         final JFrame frame = new JFrame("Testframe");
 	    frame.setPreferredSize(new Dimension(700,700));
 	    JPanel panel = new JPanel(new BorderLayout());
         Panel butPanel = new Panel();
         butPanel.setLayout(null);
         butPanel.setPreferredSize(new Dimension(250,700));
-        final Panel pointpane   = new Panel();
-        pointpane.setLayout(null);
+        final Panel pane   = new Panel();
+        pane.setLayout(null);
         //pointpane.setPreferredSize(new Dimension(350,700));
 
 	    JLabel addPointwithCoords = new JLabel("Добавить точку по координатам");
@@ -61,20 +63,20 @@ public class    Main {
                 if ((X>0)&&(Y>0)) {
                     Point b = new Point(X, Y);
                     points.add(b);
-                    b.setBounds(b.x,b.y,b.x+3,b.y+3);
-                    pointpane.add(b);
-                    pointpane.revalidate();
-                    pointpane.repaint();
+                    pane.add(b);
+                    b.setBounds(b.x,b.y,b.x + 3,b.y+3);
+                    pane.revalidate();
+                    pane.repaint();
                 }
                 else {
                     if (N>0){
                         for (int i=0;i<N;i++){
                             Point b = new Point((int)(Math.random()*(frame.getWidth()-250)), (int)(Math.random()*frame.getHeight()));
                             points.add(b);
-                            b.setBounds(b.x,b.y,b.x+3,b.y+3);
-                            pointpane.add(b);
-                            pointpane.revalidate();
-                            pointpane.repaint();
+                            pane.add(b);
+                            b.setBounds(b.x,b.y,b.x + 3,b.y+3);
+                            pane.revalidate();
+                            pane.repaint();
                         }
                     }
                 }
@@ -86,12 +88,7 @@ public class    Main {
         JButton button4 = new JButton("Добавить прямую");
         button4.setBounds(2,265,160,30);
         butPanel.add(button4);
-        button4.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
 
-            }
-        });
         JLabel addLinewithCoords = new JLabel("Добавить по коэфициентам");
         addLinewithCoords.setBounds(2,150,300,25);
         butPanel.add(addLinewithCoords);
@@ -116,6 +113,36 @@ public class    Main {
         final JTextField num = new JTextField();
         num.setBounds(35,225,30,25);
         butPanel.add(num);
+
+        button4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                double K = (!k.getText().equals("")?Double.parseDouble(k.getText()):0);
+                int B = (!b.getText().equals("")?Integer.parseInt(b.getText()):0);
+                int N = (!num.getText().equals("")?Integer.parseInt(num.getText()):0);
+                if (K != 0 || B != 0) {
+                    System.out.print(K + " " + B);
+                    Line temp = new Line(K, B);
+                    lines.add(temp);
+                    pane.add(temp);
+                    temp.setBounds(2,2,frame.getWidth(), frame.getHeight());
+                    pane.revalidate();
+                    pane.repaint();
+                }
+                else {
+                    if (N>0){
+                        for (int i=0;i<N;i++){
+                            Line temp = new Line((Math.random()*20-10), (int)(Math.random()*frame.getHeight()/2));
+                            lines.add(temp);
+                            pane.add(temp);
+                            temp.setBounds(2,2,frame.getWidth(), frame.getHeight());
+                            pane.revalidate();
+                            pane.repaint();
+                        }
+                    }
+                }
+            }
+        });
 
         JButton button5 = new JButton("Прочитаит файл");
         button5.setBounds(2,300,160,30);
@@ -155,16 +182,16 @@ public class    Main {
                     while(points.size() > 0) {
                         int index = points.size() - 1;
                         Point point = points.remove(index);
-                        pointpane.remove(point);
-                        pointpane.repaint();
-                        pointpane.revalidate();
+                        pane.remove(point);
+                        pane.repaint();
+                        pane.revalidate();
                     }
                 }
             }
         });
         button3.setBounds(2,420,160,30);
         butPanel.add(button3);
-        panel.add(pointpane,BorderLayout.CENTER);
+        panel.add(pane,BorderLayout.CENTER);
         panel.add(butPanel,BorderLayout.EAST);
         frame.getContentPane().add(panel);
         frame.pack();
