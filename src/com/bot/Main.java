@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -149,28 +151,28 @@ public class    Main {
         button5.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                try(Scanner in = new Scanner(new File("input.txt"))){
+                    int nOfPoints = in.nextInt();
+                    for(int i = 0 ; i < nOfPoints ; i++) {
+                        points.add(new Point(in.nextInt(),in.nextInt()));
+                    }
+                    int nOfLines = in.nextInt();
+                    for(int i = 0 ;i < nOfLines ; i++){
+                        lines.add(new Line(in.nextDouble(), in.nextInt()));
+                    }
+                }catch(Exception e2){
+                    System.out.print(e2.getStackTrace());
+                }
             }
         });
-
-        JButton button6 = new JButton("Записать в файл");
-        button6.setBounds(2,335,160,30);
-        butPanel.add(button6);
-        button6.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-
         JButton button7 = new JButton("Решить");
         button7.setBounds(2,370,160,30);
         butPanel.add(button7);
         button7.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Point pointMax1 = null;
-                Point pointMax2 = null;
+                Point answerPoint1 = null;
+                Point answerPoint2 = null;
                 int max = 0;
 
                 for (Point point1 : points) {
@@ -183,21 +185,35 @@ public class    Main {
                             }
                             if (curr > max) {
                                 max = curr;
-                                pointMax1 = point1;
-                                pointMax2 = point2;
+                                answerPoint1 = point1;
+                                answerPoint2 = point2;
                             }
                         }
                     }
                 }
                 try {
-                    System.out.println("(" + pointMax1.x + " ; " + pointMax1.y + ")");
-                    System.out.println("(" + pointMax2.x + " ; " + pointMax2.y + ")");
+                    System.out.println("(" + answerPoint1.x + " ; " + answerPoint1.y + ")");
+                    System.out.println("(" + answerPoint2.x + " ; " + answerPoint2.y + ")");
 
                 }catch(NullPointerException e1){
                     System.out.print("No such points");
                 }
             }
         });
+
+
+        JButton button6 = new JButton("Записать в файл");
+        button6.setBounds(2,335,160,30);
+        butPanel.add(button6);
+        button6.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               
+
+            }
+        });
+
+
 
         JButton button3 = new JButton("очистить");
         button3.addActionListener(new ActionListener() {
