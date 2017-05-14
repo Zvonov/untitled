@@ -16,8 +16,12 @@ public class    Main {
     private static ArrayList<Line> lines;
     private static Point p1;
     private static Point p2;
+    static JLabel Answer = new JLabel("Ответ:");
+    static JLabel Answer1= new JLabel("");
+    static JLabel Answer2 = new JLabel("");
     public static void createGUI() {
         lines = new ArrayList<Line>();
+
         final JFrame frame = new JFrame("Testframe");
 	    frame.setPreferredSize(new Dimension(700,700));
 	    JPanel panel = new JPanel(new BorderLayout());
@@ -52,6 +56,14 @@ public class    Main {
         final JTextField n = new JTextField();
         n.setBounds(35,70,25,25);
         butPanel.add(n);
+
+        Answer.setBounds(2,430,200,70);
+        butPanel.add(Answer);
+        Answer1.setBounds(2,450,200,70);
+        butPanel.add(Answer1);
+        Answer2.setBounds(2,470,200,70);
+        butPanel.add(Answer2);
+
 
 
 
@@ -208,6 +220,9 @@ public class    Main {
                 }catch(NullPointerException e1){
                     System.out.print("No such points");
                 }
+                Answer.setText("Ответ:");
+                Answer1.setText("Точка 1: "+ p1.x+";"+p1.y);
+                Answer2.setText("Точка 2: "+ p2.x+";"+p2.y);
             }
         });
 
