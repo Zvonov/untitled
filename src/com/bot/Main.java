@@ -14,6 +14,8 @@ import java.util.Scanner;
 public class    Main {
     private static ArrayList<Point> points = new ArrayList<Point>();
     private static ArrayList<Line> lines;
+    private static Point p1;
+    private static Point p2;
     public static void createGUI() {
         lines = new ArrayList<Line>();
         final JFrame frame = new JFrame("Testframe");
@@ -152,14 +154,22 @@ public class    Main {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try(Scanner in = new Scanner(new File("input.txt"))){
-                    int nOfPoints = in.nextInt();
-                    for(int i = 0 ; i < nOfPoints ; i++) {
-                        points.add(new Point(in.nextInt(),in.nextInt()));
+                    int n = in.nextInt();
+                    for(int i = 0 ; i < n ; i++) {
+                        Point p = new Point(in.nextInt(),in.nextInt());
+                        points.add(p);
+                        pane.add(p);
+                        p.setBounds(p.x,p.y,p.x + 3,p.y+3);
                     }
-                    int nOfLines = in.nextInt();
-                    for(int i = 0 ;i < nOfLines ; i++){
-                        lines.add(new Line(in.nextDouble(), in.nextInt()));
+                    n = in.nextInt();
+                    for(int i = 0 ;i < n ; i++){
+                        Line temp = new Line(in.nextDouble(),in.nextInt());
+                        temp.setBounds(2,2,frame.getWidth(), frame.getHeight());
+                        lines.add(temp);
+                        pane.add(temp);
                     }
+                    pane.repaint();
+                    pane.revalidate();
                 }catch(Exception e2){
                     System.out.print(e2.getStackTrace());
                 }
@@ -171,8 +181,8 @@ public class    Main {
         button7.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Point answerPoint1 = null;
-                Point answerPoint2 = null;
+                p1 = null;
+                p2 = null;
                 int max = 0;
 
                 for (Point point1 : points) {
@@ -185,15 +195,15 @@ public class    Main {
                             }
                             if (curr > max) {
                                 max = curr;
-                                answerPoint1 = point1;
-                                answerPoint2 = point2;
+                                p1 = point1;
+                                p2 = point2;
                             }
                         }
                     }
                 }
                 try {
-                    System.out.println("(" + answerPoint1.x + " ; " + answerPoint1.y + ")");
-                    System.out.println("(" + answerPoint2.x + " ; " + answerPoint2.y + ")");
+                    System.out.println("(" + p1.x + " ; " + p1.y + ")");
+                    System.out.println("(" + p2.x + " ; " + p2.y + ")");
 
                 }catch(NullPointerException e1){
                     System.out.print("No such points");
@@ -208,7 +218,15 @@ public class    Main {
         button6.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               
+               try(PrintWriter out = new PrintWriter(new File("out.txt"))){
+                   if(p1 == null || p2 == null) out.println("No such points");
+                   else {
+                       out.println("(" + p1.x + " ; " + p1.y + ")");
+                       out.println("(" + p2.x + " ; " + p2.y + ")");
+                   }
+               }catch(Exception e1) {
+                    System.out.print(e1.getStackTrace());
+               }
 
             }
         });
