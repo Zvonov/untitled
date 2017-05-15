@@ -16,7 +16,7 @@ public class    Main {
     private static ArrayList<Line> lines;
     private static Point p1;
     private static Point p2;
-    static JLabel Answer = new JLabel("Ответ:");
+    static JLabel Answer = new JLabel("");
     static JLabel Answer1= new JLabel("");
     static JLabel Answer2 = new JLabel("");
     public static void createGUI() {
@@ -216,13 +216,41 @@ public class    Main {
                 try {
                     System.out.println("(" + p1.x + " ; " + p1.y + ")");
                     System.out.println("(" + p2.x + " ; " + p2.y + ")");
+                    Answer.setText("Ответ:");
+                    Answer1.setText("Точка 1: ("+ p1.x+";"+p1.y+")");
+                    Answer2.setText("Точка 2: ("+ p2.x+";"+p2.y+")");
+                    //Point a = new Point(p1.x, p1.y);
+                    //Point b = new Point(p2.x, p2.y);
+                    //for (int i=0;i<points.size();i++){
+                    //    while(points.size() > 0) {
+                    //        int index = points.size() - 1;
+                    //       Point point = points.remove(index);
+                    //pane.remove(point);
+                    //        pane.repaint();
+                    //    }
+                    //    pane.revalidate();
+                    //}
+                    //points.add(a);
+                    //points.add(b);
+
+
+
+                    //a.setBounds(a.x, a.y,a.x + 10, a.y + 10);
+                    //points.add(a);
+                    //pane.repaint();
+                    //pane.revalidate();
+
+                    //b.setBounds(b.x, b.y,b.x + 10, b.y + 10);
+                    //points.add(b);
+                    //pane.repaint();
+                    //pane.revalidate();
 
                 }catch(NullPointerException e1){
                     System.out.print("No such points");
+                    Answer.setText("Ответ: No such points");
                 }
-                Answer.setText("Ответ:");
-                Answer1.setText("Точка 1: "+ p1.x+";"+p1.y);
-                Answer2.setText("Точка 2: "+ p2.x+";"+p2.y);
+
+
             }
         });
 
