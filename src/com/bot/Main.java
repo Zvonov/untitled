@@ -232,7 +232,9 @@ public class    Main {
                     //}
                     //points.add(a);
                     //points.add(b);
-
+                     // pane.add(a);pane.add(b);
+	
+		
 
 
                     //a.setBounds(a.x, a.y,a.x + 10, a.y + 10);
